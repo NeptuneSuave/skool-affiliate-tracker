@@ -19,15 +19,8 @@ export function middleware(request: NextRequest) {
       ip: request.ip || request.headers.get("x-forwarded-for") || "unknown",
     }
 
-    // Log tracking data (you can also send to external service here)
-    console.log("Affiliate click tracked:", trackingData)
-
-    // Store in background (non-blocking)
-    fetch(`${request.nextUrl.origin}/api/track`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(trackingData),
-    }).catch(() => {}) // Fire and forget
+    // Log tracking data to Vercel Runtime Logs
+    console.log("📊 Affiliate click tracked:", JSON.stringify(trackingData, null, 2))
 
     // Immediate redirect
     return NextResponse.redirect("https://www.skool.com/signup?ref=140ae4676486437a8baf431fe7e556a3", 307)
