@@ -220,17 +220,21 @@ export default function AnalyticsPage() {
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <p>
-              <strong>Basic link:</strong> <code className="bg-white px-2 py-1 rounded">/join</code>
+              <strong>Basic link:</strong> <code className="bg-white px-2 py-1 rounded">/skool</code>
             </p>
             <p>
               <strong>With source tracking:</strong>{" "}
-              <code className="bg-white px-2 py-1 rounded">/join?source=facebook</code>
+              <code className="bg-white px-2 py-1 rounded">/skool?source=facebook</code>
             </p>
             <p>
               <strong>With UTM parameters:</strong>{" "}
               <code className="bg-white px-2 py-1 rounded">
-                /join?utm_source=email&utm_medium=newsletter&utm_campaign=launch
+                /skool?utm_source=email&utm_medium=newsletter&utm_campaign=launch
               </code>
+            </p>
+            <p className="pt-2 text-xs text-gray-600">
+              💡 <strong>Tip:</strong> Test it yourself by visiting{" "}
+              <code className="bg-white px-2 py-1 rounded">/skool?source=test</code>
             </p>
           </CardContent>
         </Card>
