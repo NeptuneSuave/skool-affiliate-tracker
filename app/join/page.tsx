@@ -32,28 +32,12 @@ function JoinPageContent() {
     window.location.href = "https://www.skool.com/signup?ref=140ae4676486437a8baf431fe7e556a3"
   }, [searchParams])
 
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
-        <p>Redirecting to Skool...</p>
-      </div>
-    </div>
-  )
+  return null
 }
 
 export default function JoinPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
-            <p>Loading...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={null}>
       <JoinPageContent />
     </Suspense>
   )
