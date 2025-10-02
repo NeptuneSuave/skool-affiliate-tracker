@@ -28,10 +28,8 @@ function JoinPageContent() {
       body: JSON.stringify(trackingData),
     }).catch((err) => console.error("Tracking error:", err))
 
-    // Redirect after tracking
-    setTimeout(() => {
-      window.location.href = "https://www.skool.com/signup?ref=140ae4676486437a8baf431fe7e556a3"
-    }, 500)
+    // Redirect immediately after tracking
+    window.location.href = "https://www.skool.com/signup?ref=140ae4676486437a8baf431fe7e556a3"
   }, [searchParams])
 
   return (
