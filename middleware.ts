@@ -2,8 +2,8 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export function middleware(request: NextRequest) {
-  // Only handle /join route
-  if (request.nextUrl.pathname === "/join") {
+  // Only handle /skool route
+  if (request.nextUrl.pathname === "/skool") {
     // Capture tracking data
     const trackingData = {
       timestamp: new Date().toISOString(),
@@ -37,5 +37,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/join",
+  matcher: "/skool",
 }
