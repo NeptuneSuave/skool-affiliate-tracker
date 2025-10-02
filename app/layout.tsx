@@ -26,9 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${utopia.variable} antialiased`}>
-      <head>
+      <body className="font-sans">
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-ZXS8MGYMRM"
           strategy="afterInteractive"
         />
@@ -40,8 +39,6 @@ export default function RootLayout({
             gtag('config', 'G-ZXS8MGYMRM');
           `}
         </Script>
-      </head>
-      <body className="font-sans">
         {children}
         <SpeedInsights />
         <Analytics />
