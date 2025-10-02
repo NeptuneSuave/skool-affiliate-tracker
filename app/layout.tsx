@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
-import GoogleAnalytics from "./GoogleAnalytics"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import "./globals.css"
 
 const utopia = Inter({
@@ -27,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${utopia.variable} antialiased`}>
       <body className="font-sans">
-        <GoogleAnalytics />
         {children}
         <SpeedInsights />
         <Analytics />
       </body>
+      <GoogleAnalytics gaId="G-ZXS8MGYMRM" />
     </html>
   )
 }
