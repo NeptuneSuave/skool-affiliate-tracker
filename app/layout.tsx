@@ -26,12 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${utopia.variable} antialiased`}>
+      <GoogleAnalytics gaId="G-ZXS8MGYMRM" />
       <body className="font-sans">
         {children}
         <SpeedInsights />
         <Analytics />
       </body>
-      <GoogleAnalytics gaId="G-ZXS8MGYMRM" />
     </html>
   )
 }
