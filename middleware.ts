@@ -4,13 +4,39 @@ import type { NextRequest } from "next/server"
 export function middleware(request: NextRequest) {
   // Only handle /skool route
   if (request.nextUrl.pathname === "/skool") {
+    // Extract source from referrer if not explicitly provided
+    const referrer = request.headers.get("referer") || "direct"
+    let autoSource = "direct"
+
+    if (referrer !== "direct") {
+      try {
+        const refUrl = new URL(referrer)
+        const hostname = refUrl.hostname.toLowerCase()
+
+        // Auto-detect common platforms from referrer
+        if (hostname.includes("reddit.com")) autoSource = "reddit"
+        else if (hostname.includes("youtube.com") || hostname.includes("youtu.be")) autoSource = "youtube"
+        else if (hostname.includes("instagram.com")) autoSource = "instagram"
+        else if (hostname.includes("facebook.com") || hostname.includes("fb.com")) autoSource = "facebook"
+        else if (hostname.includes("twitter.com") || hostname.includes("x.com")) autoSource = "twitter"
+        else if (hostname.includes("linkedin.com")) autoSource = "linkedin"
+        else if (hostname.includes("tiktok.com")) autoSource = "tiktok"
+        else if (hostname.includes("pinterest.com")) autoSource = "pinterest"
+        else if (hostname.includes("discord.com") || hostname.includes("discord.gg")) autoSource = "discord"
+        else if (hostname.includes("t.me") || hostname.includes("telegram")) autoSource = "telegram"
+        else autoSource = hostname.replace("www.", "")
+      } catch (e) {
+        autoSource = "unknown"
+      }
+    }
+
     // Capture tracking data
     const trackingData = {
       timestamp: new Date().toISOString(),
-      referrer: request.headers.get("referer") || "direct",
+      referrer: referrer,
       userAgent: request.headers.get("user-agent") || "unknown",
       source: request.nextUrl.searchParams.get("source") ||
-              request.nextUrl.searchParams.get("utm_source") || "unknown",
+              request.nextUrl.searchParams.get("utm_source") || autoSource,
       medium: request.nextUrl.searchParams.get("medium") ||
               request.nextUrl.searchParams.get("utm_medium") || "unknown",
       campaign: request.nextUrl.searchParams.get("campaign") ||
