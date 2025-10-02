@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
-import Script from "next/script"
+import GoogleAnalytics from "./GoogleAnalytics"
 import "./globals.css"
 
 const utopia = Inter({
@@ -27,18 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${utopia.variable} antialiased`}>
       <body className="font-sans">
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-ZXS8MGYMRM"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-ZXS8MGYMRM');
-          `}
-        </Script>
+        <GoogleAnalytics />
         {children}
         <SpeedInsights />
         <Analytics />
